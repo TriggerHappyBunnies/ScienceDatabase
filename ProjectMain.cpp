@@ -108,9 +108,6 @@ int main()
 
 class compound_namer
 {
-    #include<graphics.h>
-#include<iostream>
-using namespace std;
 void sets(int ch,int bp,int tp)
 {
      if(ch!=1)
