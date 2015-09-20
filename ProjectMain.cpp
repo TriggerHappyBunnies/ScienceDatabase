@@ -106,3 +106,194 @@ int main()
     system("pause");
 }
 
+class compound_namer
+{
+    #include<graphics.h>
+#include<iostream>
+using namespace std;
+void sets(int ch,int bp,int tp)
+{
+     if(ch!=1)
+     {
+     setcolor(BLACK);
+     rectangle(670,tp,1000,bp);
+     setcolor(RED);
+     bp+=50;
+     rectangle(670,tp+50,1000,bp);
+     setcolor(11);
+     }
+     else
+     {
+     setcolor(BLACK);
+     rectangle(670,440,1000,490);
+     setcolor(RED);
+     rectangle(670,290,1000,340);
+     setcolor(11);
+     }
+}
+void mm()
+{
+    outtextxy(680,300,"1.Straight Chain");
+    outtextxy(680,350,"2.Cyclic");
+    outtextxy(680,400,"3.Benzene");
+    outtextxy(680,450,"4.Exit"); 
+}
+void m2()
+{
+    
+     outtextxy(600,300,"Enter no of c-atoms -/+");
+     settextstyle(1,0,2);
+     outtextxy(640,340,"Press x for main menu");
+     settextstyle(3,0,4);
+     rectangle(1020,290,1075,330);
+     
+     
+}
+void setu(int ch,int bp,int tp)
+{
+     if(ch!=4)
+     {
+     setcolor(BLACK);
+     rectangle(670,tp,1000,bp);
+     setcolor(RED);
+     rectangle(670,tp-50,1000,bp-50);
+     setcolor(11);
+     }
+     else
+     {
+     setcolor(BLACK);
+     rectangle(670,290,1000,340);
+     setcolor(RED);
+     rectangle(670,440,1000,490);
+     setcolor(11);
+     }
+}
+int main()
+{
+    int flag1=1;
+    int i=0;char ch;int count=1;
+    int bp=340; int tp=290;
+    int x=0;
+    int y=48;
+    int xv=550;
+    char no[0];
+    memset(no,0,2);
+    sprintf(no,"%d",x);
+    initwindow(1600,900);
+    m1:
+    settextstyle(3,0,4);
+    sets(count,bp,tp);
+    mm();
+    while(i==0)
+    {
+        if(kbhit())
+        {
+            ch=getch();
+            if(ch=='s')
+            {
+                       
+                       if(count==4)
+                       {count=1;bp=340;tp=290;sets(count,bp,tp);continue;}
+                       else{count++;}
+                       sets(count,bp,tp);
+                       bp+=50;
+                       tp+=50;
+            }
+            if(ch=='w')
+            {
+                       if(count==1)
+                       {count=4;bp=490;tp=440;setu(count,bp,tp);continue;}
+                       else{count--;}
+                       setu(count,bp,tp);
+                       bp-=50;
+                       tp-=50;
+                       
+            }
+            if(ch=='g')
+            {
+            cleardevice();
+            break;           
+            }
+        }
+    }
+    m2:
+    if(count!=3 && count!=4)
+    {
+         m2();
+        outtextxy(1030,296,no);
+        while(i==0)
+         {
+               if(kbhit())
+               {
+                        ch=getch();
+                        if(ch=='w')
+                        {
+                             setcolor(GREEN);
+                             outtextxy(975,300,"+");//951
+                            setcolor(BLACK);
+                            outtextxy(1030,296,no);
+                            setcolor(11);
+                            x++;
+                            flag1=1;
+                            if(x==13)
+                            {x=0;flag1=0;}
+                            memset(no,0,2);
+                            sprintf(no,"%d",x);
+                            outtextxy(1030,296,no);
+                            delay(100);
+                            setcolor(11);
+                            outtextxy(975,300,"+");
+                        }  
+                        if(ch=='s')
+                        {
+                            setcolor(RED);
+                            outtextxy(951,300,"-");
+                            setcolor(BLACK);
+                            outtextxy(1030,296,no);
+                            setcolor(11);
+                            x--;
+                            if(x==-1)
+                            {x=12;}
+                            memset(no,0,2);
+                            sprintf(no,"%d",x);
+                            outtextxy(1030,296,no);
+                            delay(100);
+                            setcolor(11);
+                            outtextxy(951,300,"-");
+                            flag1=0;
+                        }
+                        if(ch=='x')
+                       {
+                       cleardevice();x=0;
+                       memset(no,0,2);
+                       sprintf(no,"%d",x);goto m1;
+                       }
+                       setcolor(BLACK);
+                       if(flag1==0)
+                       { 
+                          xv=550;
+                          for(int k=0;k<12;k++)
+                          {
+                               outtextxy(xv,600,"C-");
+                               xv+=50;
+                          }
+                       }
+                       xv=550;
+                       setcolor(11);
+                       for(int j=0;j<x;j++)
+                       {
+                               outtextxy(xv,600,"C-");
+                               xv+=50;
+                       }
+               }
+                     
+               
+         }
+    }    
+    //while(i==0)
+    //{}
+    system("pause");
+}
+}
+}
+
