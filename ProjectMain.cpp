@@ -159,42 +159,56 @@ int main()
 
 class compound_namer
 {
+#include<iostream>
+#include <graphics.h>
+using namespace std;
 void sets(int ch,int bp,int tp)
 {
      if(ch!=1)
      {
      setcolor(BLACK);
-     rectangle(670,tp,1000,bp);
+     rectangle(520,tp,900,bp);
      setcolor(RED);
      bp+=50;
-     rectangle(670,tp+50,1000,bp);
+     rectangle(520,tp+50,900,bp);
      setcolor(11);
      }
      else
      {
      setcolor(BLACK);
-     rectangle(670,440,1000,490);
+     rectangle(520,340,900,390);
      setcolor(RED);
-     rectangle(670,290,1000,340);
+     rectangle(520,190,900,240);
      setcolor(11);
      }
 }
 void mm()
 {
-    outtextxy(680,300,"1.Straight Chain");
-    outtextxy(680,350,"2.Cyclic");
-    outtextxy(680,400,"3.Benzene");
-    outtextxy(680,450,"4.Exit"); 
+    outtextxy(530,200,"1.Straight Chain");
+    outtextxy(530,250,"2.Cyclic");
+    outtextxy(530,300,"3.Benzene");
+    outtextxy(530,350,"4.Exit"); 
 }
 void m2()
 {
     
-     outtextxy(600,300,"Enter no of c-atoms -/+");
+     outtextxy(500,300,"Enter no of c-atoms -/+");
      settextstyle(1,0,2);
-     outtextxy(640,340,"Press x for main menu");
+     outtextxy(540,340,"Press x for main menu");
      settextstyle(3,0,4);
-     rectangle(1020,290,1075,330);
+     rectangle(920,290,975,330);
+}
+void benzene()
+{
+     setcolor(11);
+     line(600,500,650,470);     
      
+     line(650,470,700,500);
+     line(700,500,700,550);
+     line(600,500,600,550);
+     circle(650,525,20);
+     line(700,550,650,580);
+     line(600,550,650,580);
      
 }
 void setu(int ch,int bp,int tp)
@@ -202,17 +216,17 @@ void setu(int ch,int bp,int tp)
      if(ch!=4)
      {
      setcolor(BLACK);
-     rectangle(670,tp,1000,bp);
+     rectangle(520,tp,900,bp);
      setcolor(RED);
-     rectangle(670,tp-50,1000,bp-50);
+     rectangle(520,tp-50,900,bp-50);
      setcolor(11);
      }
      else
      {
      setcolor(BLACK);
-     rectangle(670,290,1000,340);
+     rectangle(520,190,900,240);
      setcolor(RED);
-     rectangle(670,440,1000,490);
+     rectangle(520,340,900,390);
      setcolor(11);
      }
 }
@@ -220,14 +234,14 @@ int main()
 {
     int flag1=1;
     int i=0;char ch;int count=1;
-    int bp=340; int tp=290;
+    int bp=240; int tp=190;
     int x=0;
     int y=48;
     int xv=550;
     char no[0];
     memset(no,0,2);
     sprintf(no,"%d",x);
-    initwindow(1600,900);
+    initwindow(1360,700);
     m1:
     settextstyle(3,0,4);
     sets(count,bp,tp);
@@ -241,7 +255,7 @@ int main()
             {
                        
                        if(count==4)
-                       {count=1;bp=340;tp=290;sets(count,bp,tp);continue;}
+                       {count=1;bp=240;tp=190;sets(count,bp,tp);continue;}
                        else{count++;}
                        sets(count,bp,tp);
                        bp+=50;
@@ -250,7 +264,7 @@ int main()
             if(ch=='w')
             {
                        if(count==1)
-                       {count=4;bp=490;tp=440;setu(count,bp,tp);continue;}
+                       {count=4;bp=390;tp=340;setu(count,bp,tp);continue;}
                        else{count--;}
                        setu(count,bp,tp);
                        bp-=50;
@@ -265,10 +279,10 @@ int main()
         }
     }
     m2:
-    if(count!=3 && count!=4)
+    if(count==2)
     {
          m2();
-        outtextxy(1030,296,no);
+        outtextxy(930,296,no);
         while(i==0)
          {
                if(kbhit())
@@ -277,9 +291,9 @@ int main()
                         if(ch=='w')
                         {
                              setcolor(GREEN);
-                             outtextxy(975,300,"+");//951
+                             outtextxy(875,300,"+");//951
                             setcolor(BLACK);
-                            outtextxy(1030,296,no);
+                            outtextxy(930,296,no);
                             setcolor(11);
                             x++;
                             flag1=1;
@@ -287,27 +301,27 @@ int main()
                             {x=0;flag1=0;}
                             memset(no,0,2);
                             sprintf(no,"%d",x);
-                            outtextxy(1030,296,no);
+                            outtextxy(930,296,no);
                             delay(100);
                             setcolor(11);
-                            outtextxy(975,300,"+");
+                            outtextxy(875,300,"+");
                         }  
                         if(ch=='s')
                         {
                             setcolor(RED);
-                            outtextxy(951,300,"-");
+                            outtextxy(851,300,"-");
                             setcolor(BLACK);
-                            outtextxy(1030,296,no);
+                            outtextxy(930,296,no);
                             setcolor(11);
                             x--;
                             if(x==-1)
                             {x=12;}
                             memset(no,0,2);
                             sprintf(no,"%d",x);
-                            outtextxy(1030,296,no);
+                            outtextxy(930,296,no);
                             delay(100);
                             setcolor(11);
-                            outtextxy(951,300,"-");
+                            outtextxy(851,300,"-");
                             flag1=0;
                         }
                         if(ch=='x')
@@ -319,25 +333,31 @@ int main()
                        setcolor(BLACK);
                        if(flag1==0)
                        { 
-                          xv=550;
+                          xv=450;
                           for(int k=0;k<12;k++)
                           {
-                               outtextxy(xv,600,"C-");
+                               outtextxy(xv,500,"C-");
+                               if(k==10)
+                               outtextxy(xv,500,"C");
                                xv+=50;
                           }
                        }
-                       xv=550;
+                       xv=450;
                        setcolor(11);
                        for(int j=0;j<x;j++)
                        {
-                               outtextxy(xv,600,"C-");
+                               outtextxy(xv,500,"C-");
+                               if(j==10)
+                               outtextxy(xv,500,"C");
                                xv+=50;
                        }
                }
-                     
-               
          }
-    }    
+    } 
+    if(count==3)
+    {
+                benzene();         
+    }   
     //while(i==0)
     //{}
     system("pause");
