@@ -10,6 +10,160 @@
 #include<graphics.h>
 using namespace std;
 
+class LS
+{
+    #include<iostream>
+#include<graphics.h>
+#include<math.h>
+using namespace std;
+
+int v,oposx=0,f=10,u,R,h;
+int x,y;
+double p1,p;
+double isize;
+char ch='a',ptr[5];
+
+int getf()
+{
+    cout<<"\nEnter new focal length : ";
+    cin>>f;
+    return f;
+}
+
+void DrawMir()
+{
+    setcolor(BROWN);
+    arc((x/2+(f*2)*10),y/2,100,260,(f*2)*10);
+    setcolor(07);
+    line(50,y/2,x-50,y/2);
+    setcolor(LIGHTGRAY);
+    line(x/2-R/2,y/2-2,x/2-R/2,y/2+2);
+    line(x/2+R/2,y/2-2,x/2+R/2,y/2+2);
+    line(x/2-R,y/2-2,x/2-R,y/2+2);
+    line(x/2+R,y/2-2,x/2+R,y/2+2);
+}
+
+void Rays()
+{
+    p=sqrt(R*R-2500);
+    setcolor(WHITE);
+    line(oposx,(y/2)-50,(x/2)+R-p,(y/2)-50);//Parrallel ray to mirror
+    line(oposx,y/2-50,x/2,y/2);//Ray to pole
+    if(oposx<x/2&&f>0)
+    {
+        setcolor(WHITE);
+        line(x/2,y/2,oposx,(y/2)+50);//Reflected ray2
+        setcolor(DARKGRAY);
+        p1=(double)((x-50)-x/2)*h/v;
+        line(x/2,y/2,(x-50),y/2+p1);//Ray2 inside mirror
+        p1=(double)((y/2-50+(R/2))*100)/p;
+        setcolor(WHITE);
+        line(x/2-50,(y/2)-p1,(x/2)+R-p,(y/2)-50);//Reflected ray 1
+        setcolor(DARKGRAY);
+        line(x/2+R-p,y/2-50,x/2+(R/2),y/2);//Ray 1 inside mirror
+    }
+    if(oposx>x/2&&f>0)
+    {
+        if(oposx>x/2+(R/2))
+        {
+        setcolor(WHITE);
+        p1=(double)((x-50)-x/2)*h/v;
+        line(x/2,y/2,(x-50),y/2+p1);  //Reflected ray2
+        p1=(double)((1200-p)*50)/p;
+        setcolor(WHITE);
+        line(x/2-100,y/2+p1,x/2+R-p,y/2-50);//Reflected ray 1 
+        }
+        else
+        {
+        setcolor(DARKGRAY);
+        p1=(double)((x/2-50+(R/2))*100)/p;
+        setcolor(DARKGRAY);
+        line(x/2-50,y/2-p1,x/2+R-p,y/2-50);
+        setcolor(WHITE);
+        line(x/2+R-p,y/2-50,x/2+(R/2),y/2);//Reflected ray 1
+        setcolor(WHITE);
+        p1=(double)((x-50)/2)*h/v;
+        line(x/2,y/2,x-50,y/2+p1);  //Reflected ray2
+        setcolor(DARKGRAY);
+        line(x/2,y/2,50,y/2-p1);  //Ray 2 inside mirror
+        }
+    }
+        
+}
+
+int main()
+{
+    cout<<"Initial focal length is 10 units.\n";
+    system("pause");
+    initwindow(1360,750);
+    x=getmaxx();
+    y=getmaxy();
+    while(ch!='q')
+    {
+        labelX:
+        initwindow(1360,750);
+        label:  
+        cleardevice();
+        labelY:   
+        settextstyle(4,0,12);
+        setcolor(8);      
+        outtextxy(200,100,"Focal Length :");
+        outtextxy(200,800,"Press q to quit.");
+        outtextxy(200,750,"Press f to change focal length.");
+        itoa(f,ptr,10);
+        outtextxy(375,100,ptr);
+        if(kbhit())
+        {    
+            ch=getch();
+            if(ch=='q')
+            {
+                closegraph();
+                break;
+            }
+            else if(ch=='f')
+            {
+                closegraph();
+                f=getf();
+                goto labelX;
+            }
+            else
+                goto label;
+        }
+         
+        else
+        {
+
+            R=(f*2)*10;
+            DrawMir();  
+            oposx=mousex();
+            u=oposx-x/2;
+            if(u>R/2-5&&u<R/2+5)
+            {    
+                outtextxy(200,150,"Image at infinity.");
+                setcolor(GREEN);
+                line(oposx,(y/2),oposx,(y/2)-50);
+                delay(100);
+                goto label;
+            }
+            setcolor(GREEN);
+            line(oposx,y/2,oposx,(y/2)-50);
+            v=(u*(R/2))/(u-(R/2));
+            isize=(double)v/u;
+            h=isize*50;
+            setcolor(LIGHTGREEN);
+            line(x/2+v,y/2,x/2+v,y/2+h);
+            Rays();  
+            delay(100);            
+            if(mousex()==oposx)
+                goto labelY;
+            goto label;
+        }
+    }
+    system("pause");
+}
+
+}
+
 
 class LSim
 {
