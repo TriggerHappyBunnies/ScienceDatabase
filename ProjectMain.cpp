@@ -95,7 +95,7 @@ int main()
 {
     cout<<"Initial focal length is 10 units.\n";
     system("pause");
-    initwindow(1360,750);
+    initwindow(1360,700);
     x=getmaxx();
     y=getmaxy();
     while(ch!='q')
