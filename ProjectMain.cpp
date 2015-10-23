@@ -5,7 +5,8 @@
 
 //I had coded without using a cass, so if u want to test it out on your PC just take the contents of the class
 //and dont take the class as a whole.
-//LIGHT SIMULATOR COMPLETE! Prone only to minor changes.
+
+//LIGHT SIMULATOR COMPLETE! 
 #include<iostream>
 #include<graphics.h>
 #include<math.h>
@@ -45,21 +46,28 @@ void Rays()
     setcolor(WHITE);
     line(oposx,(y/2)-50,(x/2)+R-p,(y/2)-50);//Parrallel ray to mirror
     line(oposx,y/2-50,x/2,y/2);//Ray to pole
+    
     if(oposx<x/2&&f>0)
     {
+        setcolor(8);      
+        outtextxy(100,610,"Nature of mirror : Convex");
         setcolor(WHITE);
         line(x/2,y/2,oposx,(y/2)+50);//Reflected ray2
         setcolor(DARKGRAY);
         p1=(double)((x-50)-x/2)*h/v;
         line(x/2,y/2,(x-50),y/2+p1);//Ray2 inside mirror
-        p1=(double)((y/2-50+(R/2))*100)/p;
         setcolor(WHITE);
-        line(x/2-50,(y/2)-p1,(x/2)+R-p,(y/2)-50);//Reflected ray 1
+        p1=(double)((x/2+(R/2))*100)/p;
+        line(0,y/2-p1,x/2+R-p,y/2-50);//Reflected ray 1
         setcolor(DARKGRAY);
-        line(x/2+R-p,y/2-50,x/2+(R/2),y/2);//Ray 1 inside mirror
+        p1=(double)((1200-p)*50)/p;
+        line(x-80,y/2+p1,x/2+R-p,y/2-50);//Ray 1 inside mirror
     }
+    
     if(oposx>x/2&&f>0)
     {
+        setcolor(8);      
+        outtextxy(100,610,"Nature of mirror : Concave");
         if(oposx>x/2+(R/2))
         {
         setcolor(WHITE);
@@ -67,24 +75,24 @@ void Rays()
         line(x/2,y/2,(x-50),y/2+p1);  //Reflected ray2
         p1=(double)((1200-p)*50)/p;
         setcolor(WHITE);
-        line(x/2-100,y/2+p1,x/2+R-p,y/2-50);//Reflected ray 1 
+        line(x-80,y/2+p1,x/2+R-p,y/2-50);//Reflected ray 1 
         }
         else
         {
         setcolor(DARKGRAY);
-        p1=(double)((x/2-50+(R/2))*100)/p;
+        p1=(double)((x/2+(R/2))*100)/p;
         setcolor(DARKGRAY);
-        line(x/2-50,y/2-p1,x/2+R-p,y/2-50);
+        line(0,y/2-p1,x/2+R-p,y/2-50);//Ray 1 inside mirror
         setcolor(WHITE);
-        line(x/2+R-p,y/2-50,x/2+(R/2),y/2);//Reflected ray 1
+        p1=(double)((1200-p)*50)/p;
+        line(x-80,y/2+p1,x/2+R-p,y/2-50);;//Reflected ray 1
         setcolor(WHITE);
         p1=(double)((x-50)/2)*h/v;
         line(x/2,y/2,x-50,y/2+p1);  //Reflected ray2
         setcolor(DARKGRAY);
         line(x/2,y/2,50,y/2-p1);  //Ray 2 inside mirror
         }
-    }
-        
+    }        
 }
 
 int main()
@@ -103,11 +111,17 @@ int main()
         labelY:   
         settextstyle(4,0,12);
         setcolor(8);      
-        outtextxy(200,100,"Focal Length :");
-        outtextxy(200,800,"Press q to quit.");
-        outtextxy(200,750,"Press f to change focal length.");
+        outtextxy(100,550,"Focal Length :");
+        outtextxy(100,680,"Press q to quit.");
+        outtextxy(100,700,"Press f to change focal length.");
         itoa(f,ptr,10);
-        outtextxy(375,100,ptr);
+        outtextxy(275,550,ptr);
+        itoa(u,ptr,10);
+        outtextxy(100,570,"Object Distance : ");
+        outtextxy(300,570,ptr);
+        itoa(v,ptr,10);
+        outtextxy(100,590,"Image Distance : ");
+        outtextxy(300,590,ptr);
         if(kbhit())
         {    
             ch=getch();
@@ -138,8 +152,26 @@ int main()
                 outtextxy(200,150,"Image at infinity.");
                 setcolor(GREEN);
                 line(oposx,(y/2),oposx,(y/2)-50);
-                delay(100);
-                goto label;
+                p=sqrt(R*R-2500);
+                setcolor(WHITE);
+                line(oposx,(y/2)-50,(x/2)+R-p,(y/2)-50);//Parrallel ray to mirror
+                line(oposx,y/2-50,x/2,y/2);//Ray to pole
+                setcolor(DARKGRAY);
+                p1=(double)((x/2+(R/2))*100)/p;;
+                line(0,y/2-p1,x/2+R-p,y/2-50);//Ray 1 inside mirror
+                setcolor(WHITE);
+                p1=(double)((1200-p)*50)/p;
+                line(x-80,y/2+p1,x/2+R-p,y/2-50);;//Reflected ray 1
+                setcolor(WHITE);
+                p1=(double)((x-50)/2)*h/v;
+                line(x/2,y/2,x-50,y/2+p1);  //Reflected ray2
+                setcolor(DARKGRAY);
+                line(x/2,y/2,50,y/2-p1);  //Ray 2 inside mirror
+                no_flik:
+                if(mousex()!=oposx)
+                    goto label;
+                else
+                    goto no_flik;
             }
             setcolor(GREEN);
             line(oposx,y/2,oposx,(y/2)-50);
@@ -158,7 +190,6 @@ int main()
     system("pause");
 }
 
-}
 
 class compound_namer
 {
