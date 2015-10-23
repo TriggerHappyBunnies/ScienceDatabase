@@ -114,7 +114,8 @@ int main()
         outtextxy(100,550,"Focal Length :");
         outtextxy(100,680,"Press q to quit.");
         outtextxy(100,700,"Press f to change focal length.");
-        itoa(f,ptr,10);
+        itoa(f*10,ptr,10);
+        outtextxy(330,550,"pixels (Entered f*10)");
         outtextxy(275,550,ptr);
         itoa(u,ptr,10);
         outtextxy(100,570,"Object Distance : ");
