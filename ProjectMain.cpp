@@ -399,4 +399,58 @@ int main()
 }
 }
 }
+//raj 
+#include<iostream>
+#include<graphics.h>
+using namespace std;
+int main()
+{float m,c,x=0,y;                                                                 
+cout<<"\n Enter slope ";                                                                                                 
+cin>>m;                  
+cout<<"\n Enter constant ";                
+cin>>c;
+system("pause");
+c*=10;
+initwindow(1360,750);
+line(680,0,680,750);
+line(0,375,1360,375);
+
+for(int i=0;;)
+{        y=-m*x-c;
+
+       if((x<1360)&&(y<750))
+        
+        {putpixel(x+680,y+375,8);
+        
+        }
+
+    else{break;}
+   x++;                                        
+}   
+y=750;
+
+
+for(int i=0;;)
+{        x=-(y+c)/m;
+
+       if((x<1360)&&(y<750))
+        
+        {putpixel(x+680,y+375,8);
+        
+        }
+
+
+   y--;                                        
+}   
+   
+   
+
+
+   
+
+   
+
+system("pause");
+}   
+
 
