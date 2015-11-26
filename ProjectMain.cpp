@@ -399,58 +399,86 @@ int main()
 }
 }
 }
-//raj 
+
+//STRAIGHT LINE GRAPHING CALCULATOR
+//COMPLETE
+
 #include<iostream>
 #include<graphics.h>
 using namespace std;
+
+float m,c,x=0,y; 
+char ptr[5],ch=' ';
+
+void text()
+{
+    settextstyle(4,0,12);
+    itoa(m,ptr,10);
+    int len=0;
+    while(!(ptr[len]=='\0'))
+    {
+        len++;
+    }   
+    setcolor(WHITE);
+    outtextxy(50,50,"Equation of the line : y=");
+    outtextxy(317,50,ptr); 
+    outtextxy(317+(len*15),50,"x+");  
+    c=c/30;
+    itoa(c,ptr,10);
+    outtextxy(317+(len*15)+30,50,ptr);
+    setcolor(8);
+    outtextxy(50,680,"Press q to quit.");
+    outtextxy(50,710,"Press r to re-enter values.");
+}
+
 int main()
-{float m,c,x=0,y;                                                                 
-cout<<"\n Enter slope ";                                                                                                 
-cin>>m;                  
-cout<<"\n Enter constant ";                
-cin>>c;
-system("pause");
-c*=10;
-initwindow(1360,750);
-line(680,0,680,750);
-line(0,375,1360,375);
-
-for(int i=0;;)
-{        y=-m*x-c;
-
-       if((x<1360)&&(y<750))
-        
-        {putpixel(x+680,y+375,8);
-        
-        }
-
-    else{break;}
-   x++;                                        
-}   
-y=750;
-
-
-for(int i=0;;)
-{        x=-(y+c)/m;
-
-       if((x<1360)&&(y<750))
-        
-        {putpixel(x+680,y+375,8);
-        
-        }
-
-
-   y--;                                        
-}   
-   
-   
-
-
-   
-
-   
-
-system("pause");
+{
+ 
+    cout<<"\nSTRAIGHT LINE GRAPHING CALCULATOR\n";     
+    label:        
+    x=0;                                                     
+    cout<<"\nEnter slope : ";                                                                                                 
+    cin>>m;                  
+    cout<<"Enter constant : ";                
+    cin>>c;
+    c*=30;
+    initwindow(1360,750);                
+    line(680,0,680,750);
+    line(0,375,1360,375);
+    for(int i=735;i>=0;i-=30)
+    {
+        line(678,i,682,i);
+    }
+    for(int i=1340;i>=0;i-=30)
+    {
+        line(i,373,i,377);
+    }
+    while(x<1360)
+    {        
+        y=(-m*(x-680)-c+375);
+        setcolor(9);
+        lineto(x,y);
+        x++;                                        
+    }  
+    text();
+    labelX:
+    if(kbhit())
+     {    
+         ch=getch();
+         if(ch=='r')
+         {
+             closegraph();
+             goto label;
+         }
+         if(ch=='q')
+         {
+             closegraph();
+             exit(0);
+         }
+     }
+     else
+         goto labelX;
+    system("pause");
 }   
 
 
