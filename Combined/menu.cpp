@@ -1,17 +1,23 @@
 #include <iostream>
 #include <graphics.h>
+#include <math.h>
 using namespace std;
-int bp=240; int tp=190;
-int count=1;
-void sets(int ch,int bp,int tp,int pos_b,int pos_t)
+
+extern int mainGC();
+extern int mainLS();
+extern int mainON();
+
+int bpX=240; int tpX=190;
+int countX=1;
+void setsX(int ch,int bpX,int tpX,int pos_b,int pos_t)
 {
      if(ch!=1)
      {
         setcolor(BLACK);
-        rectangle(520,tp,900,bp);
+        rectangle(520,tpX,900,bpX);
         setcolor(RED);
-        bp+=50;
-        rectangle(520,tp+50,900,bp);
+        bpX+=50;
+        rectangle(520,tpX+50,900,bpX);
         setcolor(11);
      }
      else
@@ -23,7 +29,7 @@ void sets(int ch,int bp,int tp,int pos_b,int pos_t)
         setcolor(11);
     }
 }
-void mm()
+void mmX()
 {
     outtextxy(530,200,"1.Compound Namer");
     outtextxy(530,250,"2.Light simulator");
@@ -35,14 +41,14 @@ void mm()
     setcolor(11);
     settextstyle(3,0,4);
 }
-void setu(int ch,int bp,int tp,int last_op,int pos_b,int pos_t)
+void setuX(int ch,int bpX,int tpX,int last_op,int pos_b,int pos_t)
 {
      if(ch!=last_op)
      {
          setcolor(BLACK);
-         rectangle(520,tp,900,bp);
+         rectangle(520,tpX,900,bpX);
          setcolor(RED);
-         rectangle(520,tp-50,900,bp-50);
+         rectangle(520,tpX-50,900,bpX-50);
          setcolor(11);
      }
      else
@@ -54,35 +60,35 @@ void setu(int ch,int bp,int tp,int last_op,int pos_b,int pos_t)
          setcolor(11);
      }
 }
-int box(char ch,int last_op,int pos_b,int pos_t)
+int boxX(char ch,int last_op,int pos_b,int pos_t)
 {
      if(ch=='s')
             {
                        
-                       if(::count==last_op)
+                       if(::countX==last_op)
                         {
-                            ::count=1;bp=240;tp=190;sets(::count,bp,tp,pos_b,pos_t);
+                            ::countX=1;bpX=240;tpX=190;setsX(::countX,bpX,tpX,pos_b,pos_t);
                         }
                        else
                         {
-                            ::count++;
-                            sets(::count,bp,tp,pos_b,pos_t);
-                            bp+=50;
-                            tp+=50;
+                            ::countX++;
+                            setsX(::countX,bpX,tpX,pos_b,pos_t);
+                            bpX+=50;
+                            tpX+=50;
                         }
             }
             if(ch=='w')
             {
-                       if(::count==1)
+                       if(::countX==1)
                         {
-                            ::count=last_op;bp=pos_b;tp=pos_t;setu(::count,bp,tp,last_op,pos_b,pos_t);
+                            ::countX=last_op;bpX=pos_b;tpX=pos_t;setuX(::countX,bpX,tpX,last_op,pos_b,pos_t);
                         }
                        else
                         {
-                            ::count--;
-                        setu(::count,bp,tp,last_op,pos_b,pos_t);
-                        bp-=50;
-                        tp-=50;}
+                            ::countX--;
+                        setuX(::countX,bpX,tpX,last_op,pos_b,pos_t);
+                        bpX-=50;
+                        tpX-=50;}
             }
             if(ch=='g')
             {
@@ -96,7 +102,7 @@ int main()
     ex_mm:
     settextstyle(3,0,4);
     setcolor(WHITE);
-    mm();
+    mmX();
     int i=0;
     char ch;
     while(i==0)
@@ -104,9 +110,26 @@ int main()
         if(kbhit())
         {
             ch=getch();
-            if(box(ch,4,390,340)==1)
+            if(boxX(ch,4,390,340)==1)
            break;
         }
     }
+    if(::countX==1)
+    {
+        closegraph();
+        mainON();
+    }
+    else if(::countX==2)
+    {
+        closegraph(); 
+        mainLS();
+    }
+    else if(::countX==3)
+    {
+        closegraph();
+        mainGC();
+    }
+    else
+        exit(1);
     system("pause");
 }
