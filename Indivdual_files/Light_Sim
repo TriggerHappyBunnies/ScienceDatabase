@@ -11,6 +11,8 @@
 #include <math.h>
 using namespace std;
 
+extern int main();
+
 int v,oposx=0,f=10,u,R,h;
 int x,y;
 double p1,p;
@@ -19,8 +21,16 @@ char ch='a',ptr[5];
 
 int getf()
 {
+    f:
     cout<<"\nEnter new focal length : ";
     cin>>f;
+    if(!(isdigit(f)))
+    {
+        cout<<"\nEnter a valid integer value!";
+        goto f;
+    } 
+    if(f<0)
+        f=f*-1;
     return f;
 }
 
@@ -92,8 +102,9 @@ void Rays()
     }        
 }
 
-int main()
+int mainLS()
 {
+    ch=' ';
     cout<<"Initial focal length is 10 units.\n";
     system("pause");
     initwindow(1360,700);
@@ -109,7 +120,7 @@ int main()
         settextstyle(4,0,12);
         setcolor(8);      
         outtextxy(100,550,"Focal Length :");
-        outtextxy(100,680,"Press q to quit.");
+        outtextxy(100,680,"Press q to quit to main menu.");
         outtextxy(100,700,"Press f to change focal length.");
         itoa(f*10,ptr,10);
         outtextxy(330,550,"pixels (Entered f*10)");
@@ -126,7 +137,7 @@ int main()
             if(ch=='q')
             {
                 closegraph();
-                break;
+                main();
             }
             else if(ch=='f')
             {
