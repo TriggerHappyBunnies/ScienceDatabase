@@ -38,6 +38,7 @@ void mm()
     setcolor(WHITE);
     outtextxy(510,340,"Press g to select everywhere");
     outtextxy(510,370,"Press any key to continue now");
+    outtextxy(510,340,"Press x to go back");
     settextstyle(3,0,4);
     setcolor(11);
 }
@@ -653,6 +654,11 @@ int main()
     {
         if(kbhit())
         {
+               ch=getch();
+               if(ch=='x')
+               {
+                    main();
+               }
             break;
         }
     }
