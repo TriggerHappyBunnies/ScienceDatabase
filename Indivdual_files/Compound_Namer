@@ -31,11 +31,15 @@ void sets(int ch,int bp,int tp,int pos_b,int pos_t)
 }
 void mm()
 {
-    outtextxy(530,200,"1.Straight Chain");
-    outtextxy(530,250,"2.Exit");
+     setcolor(RED);
+    outtextxy(500,200,"COMPOUND NAMER");
+    outtextxy(510,300,"Instructions:");
     settextstyle(1,0,2);
-    outtextxy(540,340,"Press g to select everywhere");
+    setcolor(WHITE);
+    outtextxy(510,340,"Press g to select everywhere");
+    outtextxy(510,370,"Press any key to continue now");
     settextstyle(3,0,4);
+    setcolor(11);
 }
 void m2()
 {
@@ -597,7 +601,9 @@ void name_comp(int s[11],int n)
             }
         }
      }
+        settextstyle(1,0,2); 
         outtextxy(10,50,"Press x for main menu");
+        settextstyle(3,0,4); 
         int o=0;
         char ch;
         while(o==0)
@@ -608,7 +614,10 @@ void name_comp(int s[11],int n)
                 if(ch=='x')
                     {
                         setcolor(2);
+                         settextstyle(1,0,2); 
                         outtextxy(10,50,"Press x for main menu");
+                        delay(100);
+                         settextstyle(3,0,4); 
                         setcolor(11);
                         cleardevice();
                         break; 
@@ -639,17 +648,16 @@ int main()
     initwindow(1360,700);
     m1:
     settextstyle(3,0,4);
-    sets(::count,bp,tp,390,340);
     mm();
     while(i==0)
     {
         if(kbhit())
         {
-            ch=getch();
-            if(box(ch,2,390,340)==1)
-           break;
+            break;
         }
     }
+    cleardevice();
+    ::count=1;
     m2:
     if(::count==1)
     {
@@ -842,10 +850,5 @@ int main()
          name_comp(subst,no_c_atoms);
          goto m1;                        
     } //if count
-    if(::count==2)
-    {
-          system("exit"); 
-          closegraph();        
-    }   
     system("pause");
 }
