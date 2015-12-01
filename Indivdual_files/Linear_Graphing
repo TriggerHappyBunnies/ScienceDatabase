@@ -1,16 +1,13 @@
-//       **********      Linear Graphing       ***********       \\
-//       **** By- Raj US,Sushant Rao and Aakash Hegde ****       \\
-//                           ~~~   ~~~                           \\ 
-//                           (@)   (@)                           \\  
-//                              /_\                              \\
-//                            =-=-=-=                            \\
- 
 #include <iostream>
 #include <graphics.h>
+#include <math.h>
 using namespace std;
 
-float m,c,x=0,y; 
-char ptr[5],ch=' ';
+extern int main();
+
+float m,c;
+static float x=0,y; 
+static char ptr[5],ch=' ';
 
 void text()
 {
@@ -29,11 +26,11 @@ void text()
     itoa(c,ptr,10);
     outtextxy(317+(len*15)+30,50,ptr);
     setcolor(8);
-    outtextxy(50,680,"Press q to quit.");
+    outtextxy(50,680,"Press q to quit to main menu.");
     outtextxy(50,710,"Press r to re-enter values.");
 }
 
-int main()
+int mainGC()
 {
  
     cout<<"\nSTRAIGHT LINE GRAPHING CALCULATOR\n";     
@@ -75,7 +72,7 @@ int main()
          if(ch=='q')
          {
              closegraph();
-             exit(0);
+             main();
          }
      }
      else
