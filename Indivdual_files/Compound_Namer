@@ -7,6 +7,9 @@
 #include <iostream>
 #include <graphics.h>
 using namespace std;
+
+extern int main();
+
 int bp=240; int tp=190;
 int count=1;
 void sets(int ch,int bp,int tp,int pos_b,int pos_t)
@@ -626,7 +629,7 @@ void name_comp(int s[11],int n)
         }
 
 }
-int main()
+int mainON()
 {
     int i1=0;int i2=0;
     int subst[11];
@@ -666,8 +669,13 @@ int main()
         while(i==0)
          {
                if(kbhit())
-               {
+               {         
                         ch=getch();
+                        if(ch=='x')
+                        {
+                            closegraph();
+                            main();
+                        }
                         if(ch=='w')
                         {
                              setcolor(GREEN);
