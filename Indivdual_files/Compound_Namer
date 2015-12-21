@@ -6,10 +6,7 @@
 //                            =-=-=-=                            \\
 #include <iostream>
 #include <graphics.h>
-#include <math.h>
 using namespace std;
-
-
 int bp=240; int tp=190;
 int count=1;
 void sets(int ch,int bp,int tp,int pos_b,int pos_t)
@@ -34,10 +31,15 @@ void sets(int ch,int bp,int tp,int pos_b,int pos_t)
 }
 void mm()
 {
-    outtextxy(530,200,"1.Straight Chain");
-    outtextxy(530,250,"2.Cyclic");
-    outtextxy(530,300,"3.Benzene");
-    outtextxy(530,350,"4.Exit"); 
+     setcolor(RED);
+    outtextxy(500,200,"COMPOUND NAMER");
+    outtextxy(510,300,"Instructions:");
+    settextstyle(1,0,2);
+    setcolor(WHITE);
+    outtextxy(510,340,"Press g to select everywhere");
+    outtextxy(510,370,"Press any key to continue now");
+    settextstyle(3,0,4);
+    setcolor(11);
 }
 void m2()
 {
@@ -599,8 +601,32 @@ void name_comp(int s[11],int n)
             }
         }
      }
+        settextstyle(1,0,2); 
+        outtextxy(10,50,"Press x for main menu");
+        settextstyle(3,0,4); 
+        int o=0;
+        char ch;
+        while(o==0)
+        {
+            if(kbhit())
+            {
+                ch=getch();
+                if(ch=='x')
+                    {
+                        setcolor(2);
+                         settextstyle(1,0,2); 
+                        outtextxy(10,50,"Press x for main menu");
+                        delay(100);
+                         settextstyle(3,0,4); 
+                        setcolor(11);
+                        cleardevice();
+                        break; 
+                    }
+            }
+        }
+
 }
-int mainON()
+int main()
 {
     int i1=0;int i2=0;
     int subst[11];
@@ -622,17 +648,16 @@ int mainON()
     initwindow(1360,700);
     m1:
     settextstyle(3,0,4);
-    sets(::count,bp,tp,390,340);
     mm();
     while(i==0)
     {
         if(kbhit())
         {
-            ch=getch();
-            if(box(ch,4,390,340)==1)
-           break;
+            break;
         }
     }
+    cleardevice();
+    ::count=1;
     m2:
     if(::count==1)
     {
@@ -822,16 +847,8 @@ int mainON()
          cleardevice();
          draw_c(1,no_c_atoms);
          draw_subst(subst,no_c_atoms);
-         name_comp(subst,no_c_atoms);                        
+         name_comp(subst,no_c_atoms);
+         goto m1;                        
     } //if count
-    if(::count==3)
-    {
-                benzene();         
-    }   
-    if(::count==4)
-    {system("exit");}
-    //while(i==0)
-    //{}
     system("pause");
 }
-
