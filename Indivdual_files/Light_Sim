@@ -24,13 +24,13 @@ int getf()
     f:
     cout<<"\nEnter new focal length : ";
     cin>>f;
-    if(!(isdigit(f)))
+    if((isdigit(f))&&(f>=10)&&(f<=50))
     {
-        cout<<"\nEnter a valid integer value!";
+        cout<<"\nEnter a valid integer value between 10 and 50.";
         goto f;
     } 
     if(f<0)
-        f=f*-1;
+        f=f*(-1);
     return f;
 }
 
