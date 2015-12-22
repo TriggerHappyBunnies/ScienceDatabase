@@ -1,6 +1,7 @@
 #include <iostream>
 #include <graphics.h>
 #include <math.h>
+#include<stdlib.h>
 using namespace std;
 
 extern int mainGC();
@@ -116,16 +117,19 @@ int main()
     }
     if(::countX==1)
     {
+        system("CLS");
         closegraph();
         mainON();
     }
     else if(::countX==2)
     {
+         system("CLS");
         closegraph(); 
         mainLS();
     }
     else if(::countX==3)
     {
+         //system("CLS");
         closegraph();
         mainGC();
     }
