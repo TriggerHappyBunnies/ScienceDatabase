@@ -1,4 +1,4 @@
-# ScienceDatabase- 12th Grade project 
+# ScienceToolbox- 12th Grade project 
 By-Aakash Hegde,Raj US,Sushant Rao
 
 ## Compound Namer:
