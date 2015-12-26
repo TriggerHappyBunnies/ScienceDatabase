@@ -1,6 +1,7 @@
 #include <iostream>
 #include <graphics.h>
 #include <math.h>
+#include<ctype.h>
 using namespace std;
 
 extern int main();
@@ -32,12 +33,15 @@ void text()
 
 int mainGC()
 {
-    system("clear");
-    cout<<"\nSTRAIGHT LINE GRAPHING CALCULATOR\n";     
+    system("CLS");
+    cout<<"\nSTRAIGHT LINE GRAPHING CALCULATOR\n\n";  
+    cout<<"A simple graphing calculator which lets you input the slope(m) and constant(c)\n";   
+    cout<<"and plots the graph against the X and Y coordinates as per the equation :\n";
+    cout<<"y=mx+c\n\n";
     label:        
     x=0;                                                     
     cout<<"\nEnter slope : ";                                                                                                 
-    cin>>m;                  
+    cin>>m;                
     cout<<"Enter constant : ";                
     cin>>c;
     c*=30;
