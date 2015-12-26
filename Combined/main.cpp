@@ -178,19 +178,16 @@ int main()
     }
     if(::countX==1)
     {
-        system("CLS");
         closegraph();
         mainON();
     }
     else if(::countX==2)
     {
-         system("CLS");
         closegraph(); 
         mainLS();
     }
     else if(::countX==3)
     {
-         //system("CLS");
         closegraph();
         mainGC();
     }
