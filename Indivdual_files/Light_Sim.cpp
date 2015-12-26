@@ -24,9 +24,9 @@ int getf()
     f:
     cout<<"\nEnter new focal length : ";
     cin>>f;
-    if((isdigit(f))&&(f>=10)&&(f<=50))
+    if(!((f>=10)&&(f<=50)||(f>=-50)&&(f<=-10)))
     {
-        cout<<"\nEnter a valid integer value between 10 and 50.";
+        cout<<"\nEnter a valid integer value between (-50 to -10) or (10 to 50).";
         goto f;
     } 
     if(f<0)
@@ -104,7 +104,12 @@ void Rays()
 
 int mainLS()
 {
+    system("CLS");
     ch=' ';
+    cout<<"\nREFLECTION SIMULATOR\n\n";
+    cout<<"A simple and effective program that gives you the freedom of moving the object\n";
+    cout<<"and simulating image formation due to a sperical mirror. You can also adjust the";
+    cout<<"focal length of the mirror in the range of 10-50 units.\n\n";
     cout<<"Initial focal length is 10 units.\n";
     system("pause");
     initwindow(1360,700);
