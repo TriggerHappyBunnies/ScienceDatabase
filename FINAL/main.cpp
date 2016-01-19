@@ -16,40 +16,33 @@ void mainmm()
 {
      int i=0,x=0;
      settextstyle(10,0,4);
-    setcolor(GREEN);
-    outtextxy(700,400,"Developed By-");
-    settextstyle(3,0,20);
+    setcolor(DARKGRAY);
+    outtextxy(585,400,"Developed By:");
+    settextstyle(8,0,20);
     while(x<32)
     {
-            if(i==16)
-            {
-             i=1;
-            }
-            if(x==31)
-            setcolor(7);
-            else
-            setcolor(i);
-    outtextxy(330,250,"Science Toolbox");
+    setcolor(LIGHTGRAY);
+    outtextxy(270,250,"Science Toolbox");
     if(x==5)
     {
     settextstyle(10,0,4);
-    setcolor(WHITE);
-    outtextxy(800,450,"Raj US");
-    settextstyle(3,0,20);
+    setcolor(LIGHTGRAY);
+    outtextxy(650,450,"Raj US");
+    settextstyle(8,0,20);
     }
     if(x==10)
     {
     settextstyle(10,0,4);
-    setcolor(WHITE);
-    outtextxy(800,490,"Aakash Hegde");
-    settextstyle(3,0,20);
+    setcolor(LIGHTGRAY);
+    outtextxy(600,490,"Aakash Hegde");
+    settextstyle(8,0,20);
     }
     if(x==15)
     {
     settextstyle(10,0,4);
-    setcolor(WHITE);
-    outtextxy(800,530,"Sushant S Rao");
-    settextstyle(3,0,20);
+    setcolor(LIGHTGRAY);
+    outtextxy(590,530,"Sushant S Rao");
+    settextstyle(8,0,20);
     }
     x++;
     i++;
@@ -57,7 +50,7 @@ void mainmm()
     }
     
     setcolor(11);
-    settextstyle(3,0,4);
+    settextstyle(8,0,4);
 
 }
 void setsX(int ch,int bpX,int tpX,int pos_b,int pos_t)
