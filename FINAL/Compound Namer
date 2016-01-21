@@ -33,11 +33,41 @@ void CN::mm()
     outtextxy(410,300,"Instructions:");
     settextstyle(4,0,3);
     setcolor(WHITE);
-    outtextxy(450,340,"Press g select");
-    outtextxy(450,370,"Press q to quit");
-    outtextxy(450,400,"Press w and s for up and down buttons");
+    outtextxy(450,340,"Press i for information on compound namer");
+    outtextxy(450,370,"Press g to select");
+    outtextxy(450,400,"Press q to quit");
+    outtextxy(450,430,"Press w and s for up and down buttons");
     settextstyle(3,0,4);
     setcolor(11);
+}
+void CN::info()
+{
+    settextstyle(10,0,6);
+    setcolor(RED);
+    outtextxy(500,100,"INFORMATION");
+    setcolor(WHITE);
+    settextstyle(3,0,2);
+    outtextxy(360,200,"Organic compounds are made up of carbon atoms.These compounds can be made up");
+    outtextxy(360,230,"zero or no substituents.For being able to recognize these compounds without ");
+    outtextxy(360,260,"drawing IUPAC made a set of rules for naming compounds.There is some level of");
+    outtextxy(360,290,"difficulty in nameing these compounds. This program is designed to make it easy");
+    outtextxy(360,320,"to name these compounds. Given the structure of the compound the program can");
+    outtextxy(360,350,"help name the compound, hence the structure is needed as input.");
+    setcolor(RED);
+    outtextxy(570,390,"Press any key to continue");
+    int g=0;
+    while(g==0)
+    {
+        if(kbhit())
+        {
+            setcolor(GREEN);
+            outtextxy(570,390,"Press any key to continue");
+            delay(150);
+            settextstyle(3,0,4);
+            setcolor(11);
+            break;
+        }
+    }
 }
 void CN::m2()
 {
@@ -253,15 +283,10 @@ int CN::check(int n,int s,int s2[11],int s1[11])
                 x++;
             }
     }
-    if(sum2<sum1)
-    {
-        return 1;
-    }
-    return 0;
 }
 void CN::name_comp(int s[11],int n)
 {
-     int x=0,k,s1[11],k1,s2[11],p;
+     int x=0,k,s1[11],k1,s2[11],p,g=0;
      int flag=0;int count_s[5];int flag1=0;
      count_s[4]=0;
      count_s[1]=0;
@@ -299,38 +324,19 @@ void CN::name_comp(int s[11],int n)
         {
             alkane(n,flag);
             k=check(n,1,s,s1);
-            if(k==0)
+            outtextxy(660,250,"-");
+            int i=0;
+            for(;i<count_s[1];i++)
             {
-                outtextxy(660,250,"-");
-                int i=0;
-                for(;i<count_s[1];i++)
-                {
-                    char no[0];
-                    memset(no,0,2);
-                    sprintf(no,"%d",s1[i]+1);
-                    outtextxy(700+(35*i),250,no);
-                    if(i+1!=count_s[1])
-                        outtextxy(700+(35*i)+25,250,",");
+               char no[0];
+                memset(no,0,2);
+                sprintf(no,"%d",s1[i]+1);
+                outtextxy(700+(35*i),250,no);
+                if(i+1!=count_s[1])
+                outtextxy(700+(35*i)+25,250,",");
                 }
-                setcolor(11);
-                outtextxy(700+35*(i+1),250,"oic acid");
-            }
-            if(k==1)
-            {
-                outtextxy(660,250,"-");
-                int i=0;
-                for(;i<count_s[1];i++)
-                {
-                    char no[0];
-                    memset(no,0,2);
-                    sprintf(no,"%d",n-s1[i]+2);
-                    outtextxy(700+(35*i),250,no);
-                    if(i+1!=count_s[1])
-                        outtextxy(700+(35*i)+25,250,",");
-                }
-                setcolor(11);
-                outtextxy(700+35*(i+1),250,"oic acid");
-            }
+            setcolor(11);
+            outtextxy(700+35*(i+1),250,"oic acid");
             flag1=1;
         }
         if(count_s[2]!=0)
@@ -339,46 +345,30 @@ void CN::name_comp(int s[11],int n)
             {
                 alkane(n,flag);
                 k=check(n,2,s,s1);
-                if(k==0)
+                outtextxy(660,250,"-");
+                int i=0;
+                for(;i<count_s[2];i++)
                 {
-                    outtextxy(660,250,"-");
-                    int i=0;
-                    for(;i<count_s[2];i++)
-                    {
-                        char no[0];
-                        memset(no,0,2);
-                        sprintf(no,"%d",s1[i]+1);
-                        outtextxy(700+(35*i),250,no);
-                        if(i+1!=count_s[2])
-                            outtextxy(700+(35*i)+25,250,",");
-                    }
-                    setcolor(11);
-                    outtextxy(700+35*(i+1),250,"al");
+                    char no[0];
+                    memset(no,0,2);
+                    sprintf(no,"%d",s1[i]+1);
+                    outtextxy(700+(35*i),250,no);
+                    if(i+1!=count_s[2])
+                        outtextxy(700+(35*i)+25,250,",");
                 }
-                if(k==1)
-                {
-                    outtextxy(660,250,"-");
-                    int i=0;
-                    for(;i<count_s[2];i++)
-                    {
-                        char no[0];
-                        memset(no,0,2);
-                        sprintf(no,"%d",n-s1[i]+2);
-                        outtextxy(700+(35*i),250,no);
-                        if(i+1!=count_s[2])
-                            outtextxy(700+(35*i)+25,250,",");
-                    }
-                    setcolor(11);
-                    outtextxy(700+35*(i+1),250,"al");
-                }flag1=1;
+                setcolor(11);
+                outtextxy(700+35*(i+1),250,"al");
+                flag1=1;g=1;
             }
             else
             {
                 help:
-                if(k==0)
+                check(n,2,s,s1);
+                if(g==0)
                 {
-                    k1=check(n,2,s,s1);
-                    k1=check(n,3,s,s2);
+                    
+                    check(n,2,s,s1);
+                    check(n,3,s,s2);
                     int i=0;
                     if(count_s[4]==0)
                         p=250;
@@ -423,179 +413,116 @@ void CN::name_comp(int s[11],int n)
                     }
                     setcolor(11);
                     outtextxy(440,p,"oxo");
+                    goto skip;
                 }
-                if(k==1)
+            
+            if(g==1)
+            {
+                check(n,3,s,s1);
+                int i=0,l=0;
+                if(count_s[4]==0)
+                    p=250;
+                else
+                    p=210;
+                int rev[11];
+                int q=count_s[3]-1;
+                for(int h=0;h<=count_s[3];h++)
                 {
-                    k1=check(n,2,s,s1);
-                    k1=check(n,3,s,s2);
-                    int i=0;
-                    if(count_s[4]==0)
-                        p=250;
-                    else
-                        p=210;
-                    int l=0,s3[11];
-                    int c=0,v=0;
-                   if(count_s[3]!=0)
-                   {
-                    
-                        for(int j=0;j<count_s[2]+count_s[3];j++)
-                        {
-                            if(s1[c]<s2[v])
-                            {
-                                s3[j]=s1[c];
-                                c++;
-                            }
-                            else
-                            {
-                                s3[j]=s2[v];
-                                v++;
-                            }
-                        }
-                    }
-                    else
-                    {
-                       for(int i=0;i<count_s[2];i++)
-                        s3[i]=s1[count_s[2]-1-i];
-                    }
-                    for(;i<count_s[2]+count_s[3];i++)
-                    {
-                        char no[0];
-                        memset(no,0,2);
-                        sprintf(no,"%d",n-s3[i]+2)  ;  
-                        outtextxy(400-(35*l),p,no);
-                        if(i+1!=count_s[2]+count_s[3])
-                            outtextxy(400-(35*l)-10,p,",");
-                        l++;
-                    }
-                    setcolor(11);
-                    outtextxy(440,p,"oxo");
+                    rev[h]=s1[q];
+                    q--;
                 }
+                for(;i<count_s[3];i++)
+                {
+                    char no[0];
+                    memset(no,0,2);
+                    sprintf(no,"%d",rev[i]+1);
+                    outtextxy(400-(35*l),p,no);
+                    if(i+1!=count_s[3])
+                        outtextxy(400-(35*l)-10,p,",");
+                    l++;
+                }
+                setcolor(11);
+                outtextxy(440,p," oxo");
+            }
                 goto skip;
-            } 
+            }
         }
         if(count_s[3]!=0)
         {
             if(flag1==0)
             {
                 alkane(n,flag);
-                k=check(n,3,s,s1);
-                if(k==0)
+                check(n,3,s,s1);
+                outtextxy(660,250,"-");
+                int i=0;
+                for(;i<count_s[3];i++)
                 {
-                    outtextxy(660,250,"-");
-                    int i=0;
-                    for(;i<count_s[3];i++)
-                    {
-                        char no[0];
-                        memset(no,0,2);
-                        sprintf(no,"%d",s1[i]+1);
-                        outtextxy(700+(35*i),250,no);
-                        if(i+1!=count_s[3])
-                            outtextxy(700+(35*i)+25,250,",");
-                    }
-                    setcolor(11);
-                    outtextxy(700+35*(i+1),250,"one");
+                    char no[0];
+                    memset(no,0,2);
+                    sprintf(no,"%d",s1[i]+1);
+                    outtextxy(700+(35*i),250,no);
+                    if(i+1!=count_s[3])
+                        outtextxy(700+(35*i)+25,250,",");
                 }
-                if(k==1)
-                {
-                    outtextxy(660,250,"-");
-                    int i=0;
-                    for(;i<count_s[3];i++)
-                    {
-                        char no[0];
-                        memset(no,0,2);
-                        sprintf(no,"%d",n-s1[i]+2);
-                        outtextxy(700+(35*i),250,no);
-                        if(i+1!=count_s[3])
-                            outtextxy(700+(35*i)+25,250,",");
-                    }
-                    setcolor(11);
-                    outtextxy(700+35*(i+1),250,"one");
-                }flag1=1;
+                setcolor(11);
+                outtextxy(700+35*(i+1),250,"one");
+                 flag1=1;
             }
             else
-                goto help;
+            goto help;
         }skip:
         if(count_s[4]!=0)
         {
             if(flag1==0)
             {    
                 alkane(n,flag);
-                k=check(n,4,s,s1);
-                if(k==0)
-                {
-                    outtextxy(660,250,"-");
-                    int i=0;
-                    for(;i<count_s[4];i++)
-                    {
-                        char no[0];
-                        memset(no,0,2);
-                        sprintf(no,"%d",s1[i]+1);
-                        outtextxy(700+(35*i),250,no);
-                        if(i+1!=count_s[4])
-                            outtextxy(700+(35*i)+25,250,",");
-                    }
-                    setcolor(11);
-                    outtextxy(700+35*(i+1),250,"ol");
-                }
-                if(k==1)
-                {
-                    outtextxy(660,250,"-");
-                    int i=0;
-                    for(;i<count_s[4];i++)
-                    {
-                    char no[0];
-                    memset(no,0,2);
-                    sprintf(no,"%d",n-s1[i]+2);
-                    outtextxy(700+(35*i),250,no);
-                    if(i+1!=count_s[4])
-                    outtextxy(700+(35*i)+25,250,",");
-                    }
-                    setcolor(11);
-                    outtextxy(700+35*(i+1),250,"ol");
-                }
+                check(n,4,s,s1);
+                outtextxy(660,250,"-");
+                 int i=0;
+                 for(;i<count_s[4];i++)
+                 {
+                     char no[0];
+                     memset(no,0,2);
+                     sprintf(no,"%d",s1[i]+1);
+                     outtextxy(700+(35*i),250,no);
+                     if(i+1!=count_s[4])
+                         outtextxy(700+(35*i)+25,250,",");
+                 }
+                 setcolor(11);
+                outtextxy(700+35*(i+1),250,"ol");
+                outtextxy(660,250,"-");
+                 i=0;
+                 for(;i<count_s[4];i++)
+                 {
+                 char no[0];
+                 memset(no,0,2);
+                 sprintf(no,"%d",n-s1[i]+2);
+                 outtextxy(700+(35*i),250,no);
+                 if(i+1!=count_s[4])
+                 outtextxy(700+(35*i)+25,250,",");
+                 }
+                 setcolor(11);
+                 outtextxy(700+35*(i+1),250,"ol");
             }
             else
             {
                 k1=check(n,4,s,s1);
-                if(k==0)
+                int i=0,l=0;
+                int s5[11];
+                for(int i=0;i<count_s[4];i++)
+                    s5[i]=s1[count_s[4]-1-i];
+                for(;i<count_s[4];i++)
                 {
-                    
-                    int i=0,l=0;
-                    int s5[11];
-                    for(int i=0;i<count_s[4];i++)
-                        s5[i]=s1[count_s[4]-1-i];
-                    for(;i<count_s[4];i++)
-                    {
-                    char no[0];
-                    memset(no,0,2);
-                    sprintf(no,"%d",s5[i]+1);
-                    outtextxy(320-(35*l),250,no);
-                    if(i+1!=count_s[4])
-                    outtextxy(320-(35*l)-10,250,",");
-                    l++;
-                    }
-                    setcolor(11);
-                    outtextxy(360,250,"Hydroxy");
+                char no[0];
+                memset(no,0,2);
+                sprintf(no,"%d",s5[i]+1);
+                outtextxy(320-(35*l),250,no);
+                if(i+1!=count_s[4])
+                outtextxy(320-(35*l)-10,250,",");
+                l++;
                 }
-                else
-                {
-                    int i=0,l=0;
-                    int s5[11];
-                    for(int i=0;i<count_s[4];i++)
-                        s5[i]=s1[count_s[4]-1-i];
-                    for(;i<count_s[4];i++)
-                    {
-                    char no[0];
-                    memset(no,0,2);
-                    sprintf(no,"%d",n-s5[i]+2);
-                    outtextxy(320-(35*l),250,no);
-                    if(i+1!=count_s[4])
-                    outtextxy(320-(35*l)-10,250,",");
-                    l++;
-                    }
-                    setcolor(11);
-                    outtextxy(360,250,"Hydroxy");
-                }
+                setcolor(11);
+                outtextxy(360,250,"Hydroxy");
             }
         }
      }
@@ -659,6 +586,11 @@ void CN::mainON()
                         closegraph();
                         //main();
                         return;
+                   }
+                   if(ch=='i')
+                   {
+                    cleardevice();
+                    info();
                    }
             break;
         }
