@@ -47,6 +47,7 @@ class CN
       }
       void sets(int ch,int bp,int tp,int pos_b,int pos_t);
       void mm();
+      void info();
       void m2();
       void m21();
       void m211();
