@@ -77,7 +77,7 @@ void mmX()
 {
     setcolor(RED);
     settextstyle(4,0,5);
-    outtextxy(550,130,"Main Menu");
+    outtextxy(530,130,"Main Menu");
     setcolor(WHITE);
     settextstyle(3,0,4);
     outtextxy(530,200,"1.Compound Namer");
@@ -86,7 +86,7 @@ void mmX()
     outtextxy(530,350,"4.Exit");
     settextstyle(1,0,3);
     setcolor(RED);
-    outtextxy(520,400,"Press g to select");
+    outtextxy(530,400,"Press g to select");
     setcolor(11);
     settextstyle(3,0,4);
 }
