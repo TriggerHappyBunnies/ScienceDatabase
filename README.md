@@ -12,4 +12,5 @@ both command line and graphics window.
 
 ## Linear Grapher:
 Graphs linear equations of form y=mx+c. Output in 
-both command line and graphics window.
+both command line and graphics window. Saves previously entered values, and 
+makes them re-usable.
