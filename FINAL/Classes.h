@@ -1,11 +1,20 @@
 #ifndef Classes
 #define Classes
+#include<fstream>
 using namespace std;
 
 class LG
 {
+    struct hist
+    {
+        int sm,sc;
+    };
+    ifstream ifile;
+    ofstream ofile;
+    hist obj;
     float m,c;
     float x,y; 
+    int rec,slno,flag;
     char ptr[5],ch;
     public:
     LG()
@@ -15,6 +24,7 @@ class LG
     }
     void text();
     void mainGC();
+    void history();
 };
 class LS
 {
