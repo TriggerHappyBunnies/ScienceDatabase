@@ -489,19 +489,6 @@ void CN::name_comp(int s[11],int n)
                          outtextxy(700+(35*i)+25,250,",");
                  }
                  setcolor(11);
-                outtextxy(700+35*(i+1),250,"ol");
-                outtextxy(660,250,"-");
-                 i=0;
-                 for(;i<count_s[4];i++)
-                 {
-                 char no[0];
-                 memset(no,0,2);
-                 sprintf(no,"%d",n-s1[i]+2);
-                 outtextxy(700+(35*i),250,no);
-                 if(i+1!=count_s[4])
-                 outtextxy(700+(35*i)+25,250,",");
-                 }
-                 setcolor(11);
                  outtextxy(700+35*(i+1),250,"ol");
             }
             else
