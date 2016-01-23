@@ -163,6 +163,7 @@ int main()
     mmX();
     int i=0;
     char ch;
+    setsX(::countX,bpX,tpX,390,340);
     while(i==0)
     {
         if(kbhit())
