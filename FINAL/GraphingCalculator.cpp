@@ -33,10 +33,12 @@ void LG::history()
     ifile.open("History.txt");
     ifile.clear();
     ifile.seekg(0,ios::beg);
-    while(ifile)
+    while(1)
     {
         slno++;
         ifile.read((char*)&obj,sizeof(obj));
+        if(ifile.eof())
+        break;
         cout<<slno<<". y="<<obj.sm<<"x+"<<obj.sc<<endl;
     }
     cout<<"\nEnter record number to copy values : ";
