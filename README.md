@@ -1,5 +1,5 @@
 # ScienceToolbox- 12th Grade project 
-By-Aakash Hegde,Raj US,Sushant Rao
+By-Sushant Rao, Aakash Hegde, Raj US
 
 ## Compound Namer:
 can name straight chain compounds from 1-10 c-atoms and various
